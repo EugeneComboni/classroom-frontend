@@ -15,7 +15,6 @@ import {dataProvider} from "./providers/data";
 import Dashboard from "@/pages/dashboard.tsx";
 import {BookOpen, Home} from "lucide-react"
 import {Layout} from "@/components/refine-ui/layout/layout.tsx";
-import path from "path";
 import SubjectsList from "@/pages/subjects/list.tsx";
 import SubjectsCreate from "@/pages/subjects/create.tsx";
 
@@ -38,13 +37,19 @@ function App() {
                                 {
                                     name: 'dashboard',
                                     list: '/',
-                                    meta: {label: 'Home', icon: <Home/>}
+                                    meta: {
+                                        label: 'Home',
+                                        icon: <Home/>
+                                    }
                                 },
                                 {
                                     name: 'subjects',
                                     list: '/subjects',
                                     create: '/subjects/create',
-                                    meta: {label: 'Subjects', icon: <BookOpen />}
+                                    meta: {
+                                        label: 'Subjects',
+                                        icon: <BookOpen/>
+                                    }
                                 }
                             ]}
                         >
@@ -53,12 +58,15 @@ function App() {
                                     <Layout>
                                         <Outlet/>
                                     </Layout>
-                                }>
+                                }
+                                >
                                     <Route path="/" element={<Dashboard/>}/>
-                                    <Route path="sujects">
-                                        <Route index element={<SubjectsList />}/>
-                                        <Route path='create' element={<SubjectsCreate />}/>
+
+                                    <Route path="subjects">
+                                        <Route index element={<SubjectsList/>}/>
+                                        <Route path='create' element={<SubjectsCreate/>}/>
                                     </Route>
+
                                 </Route>
                             </Routes>
                             <Toaster/>
@@ -66,7 +74,7 @@ function App() {
                             <UnsavedChangesNotifier/>
                             <DocumentTitleHandler/>
                         </Refine>
-                        {/*<DevtoolsPanel/>*/}
+                        <DevtoolsPanel/>
                     </DevtoolsProvider>
                 </ThemeProvider>
             </RefineKbarProvider>
